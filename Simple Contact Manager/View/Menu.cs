@@ -48,6 +48,7 @@ namespace Simple_Contact_Manager_view
             Console.WriteLine("2) List all contacts");
             Console.WriteLine("3) Remove a contact");
             Console.WriteLine("4) Remove all contacts");
+            Console.WriteLine("5) View contact information");
             Console.WriteLine("0) Exit the program");
         }
 
@@ -63,7 +64,7 @@ namespace Simple_Contact_Manager_view
 
                 if (int.TryParse(input, out choice))
                 {
-                    if (choice < 0 || choice > 4)
+                    if (choice < 0 || choice > 5)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nThe selection {0} is out of range, please try again.\n", choice);
@@ -103,6 +104,9 @@ namespace Simple_Contact_Manager_view
 
                 case 4:
                     tasks.RemoveAllContactsProcess();
+                    break;
+
+                case 5:
                     break;
 
                 case 0:
