@@ -1,4 +1,5 @@
-﻿using Simple_Contact_Manager_model;
+﻿using Simple_Contact_Manager;
+using Simple_Contact_Manager_model;
 using Simple_Contact_Manager_util;
 using System;
 using System.Linq;
@@ -33,7 +34,13 @@ namespace Simple_Contact_Manager_view
             phoneNumber = Console.ReadLine();
             Console.Write("\nEnter the contact's address: ");
             address = Console.ReadLine();
-            manager.AddContact(new Contact(firstName, lastName, phoneNumber, address));
+            if (manager.AddContact(new Contact(firstName, lastName, phoneNumber, address)))
+            {
+                if (Launcher.GetUsePersistance())
+                {
+                    persist.WriteContacts(manager.GetContacts());
+                }
+            }
         }
         // List all of the user's current contacts to the console.
         public void ListAllContacts()
@@ -96,6 +103,10 @@ namespace Simple_Contact_Manager_view
                         else
                         {
                             manager.RemoveContact(selection = selection - 1);
+                            if (Launcher.GetUsePersistance())
+                            {
+                                persist.WriteContacts(manager.GetContacts());
+                            }
                             break;
                         }
                     }

@@ -23,7 +23,7 @@ namespace Simple_Contact_Manager_model
             return contacts[index];
         }
 
-        public void AddContact(Contact contact)
+        public bool AddContact(Contact contact)
         {
             foreach (Contact c in contacts)
             {
@@ -35,7 +35,7 @@ namespace Simple_Contact_Manager_model
                     Thread.Sleep(2500);
                     Console.ResetColor();
                     Console.Clear();
-                    return;
+                    return false; // failure
                 }
             }
             contacts.Add(contact);
@@ -45,6 +45,7 @@ namespace Simple_Contact_Manager_model
             Thread.Sleep(2500);
             Console.ResetColor();
             Console.Clear();
+            return true; // success
         }
 
         public void RemoveContact(int index)

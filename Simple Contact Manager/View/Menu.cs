@@ -29,7 +29,6 @@ namespace Simple_Contact_Manager_view
                 contacts = new List<Contact>();
                 manager = new Manager(contacts);
             }
-
             tasks = new Tasks(manager, persist);
         }
 
@@ -108,10 +107,6 @@ namespace Simple_Contact_Manager_view
 
                 case 0:
                     doExit = true;
-                    if (Launcher.GetUsePersistance())
-                    {
-                        persist.WriteContacts(manager.GetContacts());
-                    }
                     break;
             }
         }

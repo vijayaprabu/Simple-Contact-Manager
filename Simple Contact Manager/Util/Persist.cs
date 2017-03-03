@@ -1,5 +1,4 @@
-﻿using Simple_Contact_Manager;
-using Simple_Contact_Manager_model;
+﻿using Simple_Contact_Manager_model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -74,7 +73,5 @@ namespace Simple_Contact_Manager_util
                 File.Delete(filePath);
             }
         }
-
-      
     }
 }
