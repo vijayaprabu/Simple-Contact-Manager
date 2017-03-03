@@ -107,6 +107,7 @@ namespace Simple_Contact_Manager_view
                     break;
 
                 case 5:
+                    tasks.ShowContactDetails();
                     break;
 
                 case 0:

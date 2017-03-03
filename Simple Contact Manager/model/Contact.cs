@@ -17,7 +17,7 @@ namespace Simple_Contact_Manager_model
             PhoneNumber = phoneNumber;
             Address = address;
         }
-           
+
         public string GetFullName()
         {
             return FirstName + " " + LastName;
@@ -25,7 +25,7 @@ namespace Simple_Contact_Manager_model
 
         public override string ToString()
         {
-            return GetFullName() + " " + PhoneNumber + " " + Address;
+            return "Fullname: " + GetFullName() + "\nPhone number: " + PhoneNumber + "\nAddress: " + Address;
         }
     }
 }
