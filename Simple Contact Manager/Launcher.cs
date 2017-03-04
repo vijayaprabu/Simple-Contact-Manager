@@ -8,8 +8,6 @@ namespace Simple_Contact_Manager
 
         private Launcher() { } // Don't allow initialization of this class from outside as it would serve no purpose.
 
-        private const string VERSION = "1.3";
-        private const string AUTHOR = "Jared Lung";
         private static bool usePersistance = true;
 
         public static bool GetUsePersistance ()
@@ -21,7 +19,7 @@ namespace Simple_Contact_Manager
         private void Initialize()
         {
             Console.Title = "Simple Contact Manager Launcher";
-            Console.WriteLine("Hello {0}, and welcome to version {1:f1} of a simple contact manager by {2}.", Environment.UserName, VERSION, AUTHOR);
+            Console.WriteLine("Hello {0}, and welcome to version 1.3 of a simple contact manager by Jared Lung.", Environment.UserName);    
             Console.Write("Press Q to exit and any other key to continue: ");
             ConsoleKeyInfo key = Console.ReadKey();
 
