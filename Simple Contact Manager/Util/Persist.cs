@@ -12,8 +12,8 @@ namespace Simple_Contact_Manager_util
         private Utilities utilities = new Utilities();
         private readonly string filePath = Environment.CurrentDirectory + "\\Saved Contacts.dat"; // The file path for the file to be read and created at for serilization.
 
-        public void WriteContacts(List <Contact> contacts)
-        {               
+        public void WriteContacts(List<Contact> contacts)
+        {
             using (FileStream fileWriter = new FileStream(filePath, FileMode.Create, FileAccess.Write)) // Overwrite the current serilization file with a new updated file.
             {
                 try
@@ -26,9 +26,9 @@ namespace Simple_Contact_Manager_util
                 {
                     Console.Write("{0} \nPress any key to continue: ", ex.Message);
                     Console.ReadKey();
-                    Console.Clear();                 
+                    Console.Clear();
                 }
-            }   
+            }
         }
 
         public List<Contact> ReadContacts()
@@ -62,13 +62,13 @@ namespace Simple_Contact_Manager_util
             else
             {
                 List<Contact> contacts = new List<Contact>();
-                return contacts; 
+                return contacts;
             }
         }
 
         public void DeleteSaveFile()
         {
-          if (File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 File.Delete(filePath);
             }
