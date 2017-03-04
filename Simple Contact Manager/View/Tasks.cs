@@ -116,7 +116,6 @@ namespace Simple_Contact_Manager_view
                         Console.WriteLine("\n{0} is not a valid whole number, please use numbers only.\n", input);
                         Console.ResetColor();
                     }
-
                 }
             }
             else

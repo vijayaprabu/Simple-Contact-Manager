@@ -37,7 +37,7 @@ namespace Simple_Contact_Manager_view
             while (!doExit)
             {
                 DisplayOptions();
-                int choice = GetUserSelection();
+                int choice = getSelection();
                 PerformAction(choice);
             }
         }
@@ -52,7 +52,7 @@ namespace Simple_Contact_Manager_view
             Console.WriteLine("0) Exit the program");
         }
 
-        private int GetUserSelection()
+        private int getSelection()
         {
             string input;
             int choice;
