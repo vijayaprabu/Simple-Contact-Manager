@@ -59,7 +59,7 @@ namespace Simple_Contact_Manager_view
 
             while (true)
             {
-                Console.Write("Enter your choice using numbers only: ");
+                Console.Write("\nEnter your choice using numbers only: ");
                 input = Console.ReadLine();
 
                 if (int.TryParse(input, out choice))

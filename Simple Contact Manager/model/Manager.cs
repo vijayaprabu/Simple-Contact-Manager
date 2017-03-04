@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Simple_Contact_Manager_util;
+using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace Simple_Contact_Manager_model
 {
@@ -12,7 +12,7 @@ namespace Simple_Contact_Manager_model
         {
             this.contacts = contacts;
         }
-        
+
         public List<Contact> GetContacts()
         {
             return contacts;
@@ -29,22 +29,12 @@ namespace Simple_Contact_Manager_model
             {
                 if (contact.GetFullName().Equals(c.GetFullName(), StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Failed to add {0}, the contact {1} already exists.", contact.GetFullName(), contact.GetFullName());
-                    Thread.Sleep(2500);
-                    Console.ResetColor();
-                    Console.Clear();
+                    Utilities.ConsoleShowErrorMsg(String.Format("Failed to add {0}, the contact {1} already exists.", contact.GetFullName(), contact.GetFullName()));
                     return false; // failure
                 }
             }
             contacts.Add(contact);
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("{0} has been successfully added to your contacts.", contact.GetFullName());
-            Thread.Sleep(2500);
-            Console.ResetColor();
-            Console.Clear();
+            Utilities.ConsoleShowSuccessMsg(String.Format("{0} has been successfully added to your contacts.", contact.GetFullName()));
             return true; // success
         }
 
@@ -52,24 +42,14 @@ namespace Simple_Contact_Manager_model
         {
             Contact removedContact = contacts[index];
             contacts.RemoveAt(index);
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("{0} has been successfully removed from your contacts.", removedContact.GetFullName());
-            Thread.Sleep(2500);
-            Console.ResetColor();
-            Console.Clear();
+            Utilities.ConsoleShowSuccessMsg(String.Format("{0} has been successfully removed from your contacts.", removedContact.GetFullName()));
         }
 
         public void RemoveAllContacts()
         {
             int numberRemoved = contacts.Count;
             contacts.RemoveRange(0, contacts.Count);
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("{0} contact(s) have been removed.", numberRemoved);
-            Thread.Sleep(2500);
-            Console.ResetColor();
-            Console.Clear();
+            Utilities.ConsoleShowSuccessMsg(String.Format("{0} contact(s) have been removed.", numberRemoved));
         }
     }
 }

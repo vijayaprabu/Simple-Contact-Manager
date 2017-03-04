@@ -3,7 +3,6 @@ using Simple_Contact_Manager_model;
 using Simple_Contact_Manager_util;
 using System;
 using System.Linq;
-using System.Threading;
 
 namespace Simple_Contact_Manager_view
 {
@@ -60,12 +59,7 @@ namespace Simple_Contact_Manager_view
             }
             else
             {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("You have no contacts.");
-                Thread.Sleep(2500);
-                Console.ResetColor();
-                Console.Clear();
+                Utilities.ConsoleShowErrorMsg("You have no contacts.");
             }
         }
         // Walk the user through the process of removing a contact.
@@ -120,12 +114,7 @@ namespace Simple_Contact_Manager_view
             }
             else
             {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("You have no contacts that you can remove.");
-                Thread.Sleep(2500);
-                Console.ResetColor();
-                Console.Clear();
+                Utilities.ConsoleShowErrorMsg("You have no contacts that you can remove.");
             }
         }
 
@@ -138,12 +127,7 @@ namespace Simple_Contact_Manager_view
             }
             else
             {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("You have no contacts that you can remove.");
-                Thread.Sleep(2500);
-                Console.ResetColor();
-                Console.Clear();
+                Utilities.ConsoleShowErrorMsg("You have no contacts that you can remove.");
             }
         }
 
@@ -185,7 +169,7 @@ namespace Simple_Contact_Manager_view
                             Console.Write("\nPress any key to continue: ");
                             Console.ReadKey();
                             Console.Clear();
-                            break;       
+                            break;
                         }
                     }
                     else
@@ -198,12 +182,7 @@ namespace Simple_Contact_Manager_view
             }
             else
             {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("You have no contacts that you can view the details of.");
-                Thread.Sleep(2500);
-                Console.ResetColor();
-                Console.Clear();
+                Utilities.ConsoleShowErrorMsg("You have no contacts that you can view the details of.");           
             }
         }
     }

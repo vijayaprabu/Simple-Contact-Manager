@@ -9,7 +9,6 @@ namespace Simple_Contact_Manager_util
     public class Persist
     {
 
-        private Utilities utilities = new Utilities();
         private readonly string filePath = Environment.CurrentDirectory + "\\Saved Contacts.dat"; // The file path for the file to be read and created at for serilization.
 
         public void WriteContacts(List<Contact> contacts)
@@ -38,7 +37,7 @@ namespace Simple_Contact_Manager_util
                 using (FileStream fileWriter = File.Create(filePath)) { }
             }
 
-            if (utilities.IsFileEmpty(filePath)) // Only try to read the file if it's not empty.
+            if (Utilities.IsFileEmpty(filePath)) // Only try to read the file if it's not empty.
             {
                 using (FileStream fileReader = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
