@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simple_Contact_Manager_model
+namespace Simple_Contact_Manager_models
 {
     [Serializable]
     public class Contact

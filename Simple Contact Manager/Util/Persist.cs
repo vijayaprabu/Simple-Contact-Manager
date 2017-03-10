@@ -1,4 +1,4 @@
-﻿using Simple_Contact_Manager_model;
+﻿using Simple_Contact_Manager_models;
 using System;
 using System.Collections.Generic;
 using System.IO;

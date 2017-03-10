@@ -1,5 +1,5 @@
 ﻿using Simple_Contact_Manager;
-using Simple_Contact_Manager_model;
+using Simple_Contact_Manager_models;
 using Simple_Contact_Manager_util;
 using System;
 using System.Collections.Generic;

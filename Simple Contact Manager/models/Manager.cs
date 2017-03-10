@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Simple_Contact_Manager_model
+namespace Simple_Contact_Manager_models
 {
     public class Manager
     {
