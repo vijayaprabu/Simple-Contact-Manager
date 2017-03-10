@@ -25,14 +25,24 @@ namespace Simple_Contact_Manager_view
             string address;
 
             Console.Clear();
-            Console.Write("Enter the contact's first name: ");
-            firstName = Console.ReadLine();
-            Console.Write("\nEnter the contact's last name: ");
-            lastName = Console.ReadLine();
-            Console.Write("\nEnter the contact's phone number: ");
-            phoneNumber = Console.ReadLine();
+            while (true)
+            {
+                firstName = Utilities.GetAndValidateName("\nEnter the contact's first name: ");
+                lastName = Utilities.GetAndValidateName("\nEnter the contact's last name: ");
+
+                if (firstName.Equals(lastName))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nThe first and last name cannot be identical.");
+                    Console.ResetColor();
+                    continue;
+                }
+                break;
+            }
+            phoneNumber = Utilities.GetAndValidatePhoneNumber("\nEnter the contact's phone number: ");
             Console.Write("\nEnter the contact's address: ");
             address = Console.ReadLine();
+
             if (manager.AddContact(new Contact(firstName, lastName, phoneNumber, address)))
             {
                 if (Launcher.GetUsePersistance())
@@ -41,6 +51,7 @@ namespace Simple_Contact_Manager_view
                 }
             }
         }
+
         // List all of the user's current contacts to the console.
         public void ListAllContacts()
         {
@@ -182,7 +193,7 @@ namespace Simple_Contact_Manager_view
             }
             else
             {
-                Utilities.ConsoleShowErrorMsg("You have no contacts that you can view the details of.");           
+                Utilities.ConsoleShowErrorMsg("You have no contacts that you can view the details of.");
             }
         }
     }

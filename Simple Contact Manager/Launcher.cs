@@ -19,7 +19,7 @@ namespace Simple_Contact_Manager
         private void Initialize()
         {
             Console.Title = "Simple Contact Manager Launcher";
-            Console.WriteLine("Hello {0}, and welcome to version 1.3 of a simple contact manager by Jared Lung.", Environment.UserName);    
+            Console.WriteLine("Hello {0}, and welcome to version 1.4 of a simple contact manager by Jared Lung.", Environment.UserName);    
             Console.Write("Press Q to exit and any other key to continue: ");
             ConsoleKeyInfo key = Console.ReadKey();
 
@@ -39,7 +39,7 @@ namespace Simple_Contact_Manager
         public static void Main(string[] args)
         {
             // Cycle through the passed in command line arguments.
-            foreach (String s in args)
+            foreach (string s in args)
             {
                 if (s.Equals("nosave", StringComparison.OrdinalIgnoreCase))
                 {

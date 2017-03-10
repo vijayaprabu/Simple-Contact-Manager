@@ -29,12 +29,12 @@ namespace Simple_Contact_Manager_model
             {
                 if (contact.GetFullName().Equals(c.GetFullName(), StringComparison.OrdinalIgnoreCase))
                 {
-                    Utilities.ConsoleShowErrorMsg(String.Format("Failed to add {0}, the contact {1} already exists.", contact.GetFullName(), contact.GetFullName()));
+                    Utilities.ConsoleShowErrorMsg(string.Format("Failed to add {0}, the contact {1} already exists.", contact.GetFullName(), contact.GetFullName()));
                     return false; // failure
                 }
             }
             contacts.Add(contact);
-            Utilities.ConsoleShowSuccessMsg(String.Format("{0} has been successfully added to your contacts.", contact.GetFullName()));
+            Utilities.ConsoleShowSuccessMsg(string.Format("{0} has been successfully added to your contacts.", contact.GetFullName()));
             return true; // success
         }
 
@@ -42,14 +42,14 @@ namespace Simple_Contact_Manager_model
         {
             Contact removedContact = contacts[index];
             contacts.RemoveAt(index);
-            Utilities.ConsoleShowSuccessMsg(String.Format("{0} has been successfully removed from your contacts.", removedContact.GetFullName()));
+            Utilities.ConsoleShowSuccessMsg(string.Format("{0} has been successfully removed from your contacts.", removedContact.GetFullName()));
         }
 
         public void RemoveAllContacts()
         {
             int numberRemoved = contacts.Count;
             contacts.RemoveRange(0, contacts.Count);
-            Utilities.ConsoleShowSuccessMsg(String.Format("{0} contact(s) have been removed.", numberRemoved));
+            Utilities.ConsoleShowSuccessMsg(string.Format("{0} contact(s) have been removed.", numberRemoved));
         }
     }
 }
