@@ -10,7 +10,7 @@ namespace Simple_Contact_Manager_util
     public static class Utilities
     {
 
-        public static bool IsFileEmpty(string filePath) // Method to return true or false based on if a particular file is empty.
+        public static bool IsFileEmpty(string filePath) // Method to check if a particular file is empty or not.
         {
             long fileSize = new FileInfo(filePath).Length;
             return fileSize != 0;
