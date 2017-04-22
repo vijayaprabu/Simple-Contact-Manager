@@ -32,7 +32,7 @@ namespace Simple_Contact_Manager
                 Console.Title = string.Format("{0}'s Contacts", Environment.UserName);
                 Console.Clear();
                 Menu menu = new Menu();
-                menu.runMenu();
+                menu.RunMenu();
             }
         }
 

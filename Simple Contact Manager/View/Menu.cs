@@ -32,12 +32,12 @@ namespace Simple_Contact_Manager_view
             tasks = new Tasks(manager, persist);
         }
 
-        public void runMenu()
+        public void RunMenu()
         {
             while (!doExit)
             {
                 DisplayOptions();
-                int choice = getSelection();
+                int choice = GetSelection();
                 PerformAction(choice);
             }
         }
@@ -52,7 +52,7 @@ namespace Simple_Contact_Manager_view
             Console.WriteLine("0) Exit the program");
         }
 
-        private int getSelection()
+        private int GetSelection()
         {
             string input;
             int choice;
