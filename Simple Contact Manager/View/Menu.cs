@@ -6,10 +6,12 @@ using System.Collections.Generic;
 
 namespace Simple_Contact_Manager_view
 {
-
+    /*
+     * Provides a menu to the user and then processes there input and performs an action based off of it.
+     */
     public class Menu
     {
-        private bool doExit = false;
+        private bool doExit = false; // Keep displaying the menu and thus running the program?
         private Persist persist;
         private Manager manager;
         private Tasks tasks;
@@ -19,12 +21,12 @@ namespace Simple_Contact_Manager_view
             List<Contact> contacts;
             persist = new Persist();
 
-            if (Launcher.GetUsePersistance())
+            if (Launcher.GetUsePersistance()) // If persistence is enabled, get the user's contacts from a save file.
             {
                 contacts = persist.ReadContacts();
                 manager = new Manager(contacts);
             }
-            else
+            else // If persistence is not enabled, don't load the user's contacts from a save file. (start fresh)
             {
                 contacts = new List<Contact>();
                 manager = new Manager(contacts);
@@ -32,17 +34,17 @@ namespace Simple_Contact_Manager_view
             tasks = new Tasks(manager, persist);
         }
 
-        public void RunMenu()
+        public void RunMenu() // Main program loop
         {
             while (!doExit)
             {
                 DisplayOptions();
-                int choice = GetSelection();
+                int choice = GetSelection(); 
                 PerformAction(choice);
             }
         }
 
-        private void DisplayOptions()
+        private void DisplayOptions() // Display a list of options the user can choose from.
         {
             Console.WriteLine("1) Add a new contact");
             Console.WriteLine("2) List all contacts");
@@ -52,7 +54,8 @@ namespace Simple_Contact_Manager_view
             Console.WriteLine("0) Exit the program");
         }
 
-        private int GetSelection()
+        // Get a choice from the user regarding the listed options above.
+        private int GetSelection() 
         {
             string input;
             int choice;
@@ -62,16 +65,16 @@ namespace Simple_Contact_Manager_view
                 Console.Write("\nEnter your choice using numbers only: ");
                 input = Console.ReadLine();
 
-                if (int.TryParse(input, out choice))
+                if (int.TryParse(input, out choice)) // If the user's input is of type integer.
                 {
-                    if (choice < 0 || choice > 5)
+                    if (choice < 0 || choice > 5) // If the user's input is not between 0 and 5.
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nThe selection {0} is out of range, please try again.\n", choice);
                         Console.ResetColor();
                         continue;
                     }
-                    else
+                    else // Return the user's choice if it's completely valid.
                     {
                         break;
                     }
@@ -85,8 +88,9 @@ namespace Simple_Contact_Manager_view
             }
             return choice;
         }
-
-        private void PerformAction(int choice)
+        
+        // Call one of the methods in Task.cs based on what the user choose to do in the menu.
+        private void PerformAction(int choice)  
         {
             switch (choice)
             {

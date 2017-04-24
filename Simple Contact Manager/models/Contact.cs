@@ -2,7 +2,10 @@
 
 namespace Simple_Contact_Manager_models
 {
-    [Serializable]
+    /*
+     * The structure for a user's contact with basic info such as name and phone number. 
+     */
+    [Serializable] // Allow serialization of this class.
     public class Contact
     {
         public string FirstName { get; set; }
@@ -18,11 +21,13 @@ namespace Simple_Contact_Manager_models
             Address = address;
         }
 
+        // Returns the fullname of the contact.
         public string GetFullName()
         {
             return FirstName + " " + LastName;
         }
 
+        // Returns all the info about the contact.
         public override string ToString()
         {
             return "Fullname: " + GetFullName() + "\nPhone number: " + PhoneNumber + "\nAddress: " + Address;

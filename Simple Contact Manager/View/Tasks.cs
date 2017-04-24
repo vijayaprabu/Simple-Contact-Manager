@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace Simple_Contact_Manager_view
 {
+    /*
+     * Contains a series of actions that occur based off what the user choose to do in the menu.
+     */
     public class Tasks
     {
         private Manager manager;
@@ -68,7 +71,7 @@ namespace Simple_Contact_Manager_view
                 Console.ReadKey();
                 Console.Clear();
             }
-            else
+            else // If the user has no contacts display a message stating such.
             {
                 Utilities.ConsoleShowErrorMsg("You have no contacts.");
             }
@@ -108,7 +111,7 @@ namespace Simple_Contact_Manager_view
                         else
                         {
                             manager.RemoveContact(selection = selection - 1);
-                            if (Launcher.GetUsePersistance())
+                            if (Launcher.GetUsePersistance()) // If persistence is enabled save the user's current contacts to file.
                             {
                                 persist.WriteContacts(manager.GetContacts());
                             }
@@ -123,20 +126,21 @@ namespace Simple_Contact_Manager_view
                     }
                 }
             }
-            else
+            else // If the user has no contacts display a message stating such.
             {
                 Utilities.ConsoleShowErrorMsg("You have no contacts that you can remove.");
             }
         }
 
+        // Remove all the user's contacts
         public void RemoveAllContactsProcess()
         {
-            if (manager.GetContacts().Count != 0)
+            if (manager.GetContacts().Count != 0) // If the user has a contact or contacts
             {
                 manager.RemoveAllContacts();
                 persist.DeleteSaveFile();
             }
-            else
+            else // If the user has not contacts display a message stating such.
             {
                 Utilities.ConsoleShowErrorMsg("You have no contacts that you can remove.");
             }
@@ -146,9 +150,8 @@ namespace Simple_Contact_Manager_view
         public void ShowContactDetails()
         {
             string input;
-            int selection;
 
-            if (manager.GetContacts().Count != 0)
+            if (manager.GetContacts().Count != 0) // If the user has a contact or contacts
             {
                 Console.Clear();
                 int tempNum;
@@ -165,7 +168,7 @@ namespace Simple_Contact_Manager_view
                     Console.Write("\nEnter the number of the contact you wish to see the details of: ");
                     input = Console.ReadLine();
 
-                    if (int.TryParse(input, out selection))
+                    if (int.TryParse(input, out int selection))
                     {
                         if (selection < 1 || selection >= tempNum)
                         {

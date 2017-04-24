@@ -6,23 +6,27 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Simple_Contact_Manager_util
 {
+    /*
+     * Responsible for the serialization of the user's contacts.
+     */
     public class Persist
     {
 
-        private readonly string filePath = Environment.CurrentDirectory + "\\Saved Contacts.dat"; // The file path for the file to be read and created at for serilization.
+        private readonly string filePath = Environment.CurrentDirectory + "\\Saved Contacts.dat"; // The file path for the file to be read and created at for serialization.
 
         public void WriteContacts(List<Contact> contacts)
         {
-            using (FileStream fileWriter = new FileStream(filePath, FileMode.Create, FileAccess.Write)) // Overwrite the current serilization file with a new updated file.
+            using (FileStream fileWriter = new FileStream(filePath, FileMode.Create, FileAccess.Write)) // Overwrite the current serialization file with a new updated file.
             {
                 try
                 {
                     BinaryFormatter writer = new BinaryFormatter();
-                    writer.Serialize(fileWriter, contacts);
+                    writer.Serialize(fileWriter, contacts); // Start the serialization of the user's contacts.
                 }
 
                 catch (Exception ex)
                 {
+                    // TODO: Catch specific exceptions
                     Console.Write("{0} \nPress any key to continue: ", ex.Message);
                     Console.ReadKey();
                     Console.Clear();
@@ -32,7 +36,7 @@ namespace Simple_Contact_Manager_util
 
         public List<Contact> ReadContacts()
         {
-            if (!File.Exists(filePath)) // Create an empty file for serilization if one is not found upon program launch. (assuming persistance is enabled)
+            if (!File.Exists(filePath)) // Create an empty file for serialization if one is not found upon program launch. (assuming persistence is enabled)
             {
                 using (FileStream fileWriter = File.Create(filePath)) { }
             }
@@ -44,16 +48,17 @@ namespace Simple_Contact_Manager_util
                     try
                     {
                         BinaryFormatter reader = new BinaryFormatter();
-                        List<Contact> contacts = (List<Contact>)reader.Deserialize(fileReader);
+                        List<Contact> contacts = (List<Contact>)reader.Deserialize(fileReader); // Read the user's saved contacts from a file into an arraylist.
                         return contacts;
                     }
 
                     catch (Exception ex)
                     {
+                        // TODO: Catch specific exceptions
                         Console.Write("{0} \nPress any key to continue: ", ex.Message);
                         Console.ReadKey();
                         Console.Clear();
-                        return null;
+                        return null; // Return nothing incase deserialization fails.
                     }
                 }
             }

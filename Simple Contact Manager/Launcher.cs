@@ -2,15 +2,18 @@
 using System;
 
 namespace Simple_Contact_Manager
-{
+{ 
+    /* 
+     * The launcher for the program which handles the passed in command line arguments 
+     * and displays basic info to the user such as the author and the version.
+     */
     public class Launcher
     {
-
         private Launcher() { } // Don't allow initialization of this class from outside as it would serve no purpose.
 
-        private static bool usePersistance = true;
+        private static bool usePersistance = true; // Allow serialization of contacts to file?
 
-        public static bool GetUsePersistance ()
+        public static bool GetUsePersistance () // Return the usePersistance boolean value
         {
             return usePersistance;
         }
@@ -41,12 +44,12 @@ namespace Simple_Contact_Manager
             // Cycle through the passed in command line arguments.
             foreach (string s in args)
             {
-                if (s.Equals("nosave", StringComparison.OrdinalIgnoreCase))
+                if (s.Equals("nosave", StringComparison.OrdinalIgnoreCase)) // If a passed in argument matches nosave (ignore case) then set usePersistance to false
                 {
                     usePersistance = false;
                 }
             }
-            Launcher launcher = new Launcher();
+            Launcher launcher = new Launcher(); 
             launcher.Initialize();
         }      
     }

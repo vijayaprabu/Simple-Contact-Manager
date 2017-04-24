@@ -7,6 +7,9 @@ using System.Threading;
 
 namespace Simple_Contact_Manager_util
 {
+    /* 
+     * A class representing a collection of useful utilities used throughout the program.
+     */
     public static class Utilities
     {
 
@@ -16,6 +19,7 @@ namespace Simple_Contact_Manager_util
             return fileSize != 0;
         }
 
+        // Validate a first name or last name (no numbers, no special characters, etc)
         public static string GetAndValidateName(string prompt)
         {
             string name;
@@ -34,11 +38,13 @@ namespace Simple_Contact_Manager_util
                 }
                 break;
             }
-            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name.Trim().ToLower());
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name.Trim().ToLower()); // Ensures proper capitalization of names and trim whitespace.
         }
 
+        // Validate a phone number using basic rules regarding phone numbers.
         public static string GetAndValidatePhoneNumber(string prompt)
         {
+            //TODO: Make the validation smarter
             string phoneNumber;
 
             while (true)
@@ -58,6 +64,7 @@ namespace Simple_Contact_Manager_util
             return phoneNumber;
         }
 
+        // Display a message in the console in red text.
         public static void ConsoleShowErrorMsg(string message)
         {
             Console.Clear();
@@ -68,6 +75,7 @@ namespace Simple_Contact_Manager_util
             Console.Clear();
         }
 
+        // Display a message in the console in green text.
         public static void ConsoleShowSuccessMsg(string message)
         {
             Console.Clear();
