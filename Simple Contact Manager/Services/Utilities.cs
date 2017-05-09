@@ -7,19 +7,27 @@ using System.Threading;
 
 namespace SimpleContactManager.Services
 {
-    /* 
-     * A class representing a collection of useful utilities used throughout the program.
-     */
+    /// <summary>
+    /// A class representing a collection of useful methods used throughout the code.
+    /// </summary>
     public static class Utilities
     {
-
-        public static bool IsFileEmpty(string filePath) // Method to check if a particular file is empty or not.
+        /// <summary>
+        /// Checks if a given file is empty or not.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static bool IsFileEmpty(string filePath)
         {
             long fileSize = new FileInfo(filePath).Length;
             return fileSize != 0;
         }
 
-        // Validate a first name or last name (no numbers, no special characters, etc)
+        /// <summary>
+        /// Validate a first name or last name (no numbers, no special characters, etc)
+        /// </summary>
+        /// <param name="prompt"></param>
+        /// <returns></returns>
         public static string GetAndValidateName(string prompt)
         {
             string name;
@@ -38,10 +46,15 @@ namespace SimpleContactManager.Services
                 }
                 break;
             }
-            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name.Trim().ToLower()); // Ensures proper capitalization of names and trim whitespace.
+            // Ensures proper capitalization of names and trim whitespace.
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name.Trim().ToLower());
         }
 
-        // Validate a phone number using basic rules regarding phone numbers.
+        /// <summary>
+        /// Validate a phone number using basic rules regarding phone numbers.
+        /// </summary>
+        /// <param name="prompt"></param>
+        /// <returns></returns>
         public static string GetAndValidatePhoneNumber(string prompt)
         {
             //TODO: Make the validation smarter
@@ -64,7 +77,10 @@ namespace SimpleContactManager.Services
             return phoneNumber;
         }
 
-        // Display a message in the console in red text.
+        /// <summary>
+        /// Display a message in the console in red text.
+        /// </summary>
+        /// <param name="message"></param>
         public static void ConsoleShowErrorMsg(string message)
         {
             Console.Clear();
@@ -75,7 +91,10 @@ namespace SimpleContactManager.Services
             Console.Clear();
         }
 
-        // Display a message in the console in green text.
+        /// <summary>
+        /// Display a message in the console in green text.
+        /// </summary>
+        /// <param name="message"></param>
         public static void ConsoleShowSuccessMsg(string message)
         {
             Console.Clear();

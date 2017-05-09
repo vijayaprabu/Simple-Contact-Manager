@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 namespace SimpleContactManager.Models
 {
-    /*
-     * Stores the user's contacts in an arraylist and provides various methods to interact with it.
-     */
+    /// <summary>
+    /// Stores the user's contacts into a list and provides various methods to interact with it.
+    /// </summary>
     public class Manager
     {
+        // The list the user's contacts are stored in.
         private List<Contact> contacts;
 
         public Manager(List<Contact> contacts)
@@ -16,47 +17,68 @@ namespace SimpleContactManager.Models
             this.contacts = contacts;
         }
 
-        // Return the managers arraylist
+        /// <summary>
+        /// Returns the managers list containing the user's contacts.
+        /// </summary>
+        /// <returns></returns>
         public List<Contact> GetContacts()
         {
             return contacts;
         }
 
-        // Get a specific contact from the managers arraylist based off a given index.
+        /// <summary>
+        /// Get a specific contact from the managers list based off a given index.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public Contact GetContact(int index)
         {
             return contacts[index];
         }
 
-        // Add a given contact to the managers arraylist.
+        /// <summary>
+        /// Add a given contact to the managers list.
+        /// </summary>
+        /// <param name="contact"></param>
+        /// <returns></returns>
         public bool AddContact(Contact contact)
         {
-            foreach (Contact c in contacts) // Cycle through the arraylist
+            // Cycle through the managers list.
+            foreach (Contact c in contacts)
             {
-                if (contact.GetFullName().Equals(c.GetFullName(), StringComparison.OrdinalIgnoreCase)) // If the contact to add has the same name as an already existing contact.
+                // If the contact to add has the same name as an already existing contact.
+                if (contact.FullName.Equals(c.FullName, StringComparison.OrdinalIgnoreCase))
                 {
-                    Utilities.ConsoleShowErrorMsg(string.Format("Failed to add {0}, the contact {1} already exists.", contact.GetFullName(), contact.GetFullName()));
-                    return false; // A contact with the same name as the contact to be added already exists.
+                    Utilities.ConsoleShowErrorMsg(string.Format("Failed to add {0}, the contact {1} already exists.", contact.FullName, contact.FullName));
+                    // A contact with the same name as the contact to be added already exists.
+                    return false;
                 }
             }
             contacts.Add(contact);
-            Utilities.ConsoleShowSuccessMsg(string.Format("{0} has been successfully added to your contacts.", contact.GetFullName()));
-            return true; // The contact to be added is completely unique and does not share the same name as an already existing contact.
+            Utilities.ConsoleShowSuccessMsg(string.Format("{0} has been successfully added to your contacts.", contact.FullName));
+            // The contact to be added is completely unique and does not share the same name as an already existing contact.
+            return true;
         }
 
-        // Remove a specific contact based on a given index from the managers arraylist.
+        /// <summary>
+        /// Remove a specific contact based on a given index from the managers list.
+        /// </summary>
+        /// <param name="index"></param>
         public void RemoveContact(int index)
         {
             Contact removedContact = contacts[index];
             contacts.RemoveAt(index);
-            Utilities.ConsoleShowSuccessMsg(string.Format("{0} has been successfully removed from your contacts.", removedContact.GetFullName()));
+            Utilities.ConsoleShowSuccessMsg(string.Format("{0} has been successfully removed from your contacts.", removedContact.FullName));
         }
 
-        // Removes all contacts in the managers arraylist.
+        /// <summary>
+        /// Removes all contacts in the managers list.
+        /// </summary>
         public void RemoveAllContacts()
         {
-            int numberRemoved = contacts.Count; // Get the number of contacts that were removed
-            contacts.RemoveRange(0, contacts.Count); 
+            // Get the number of contacts that were removed.
+            int numberRemoved = contacts.Count;
+            contacts.RemoveRange(0, contacts.Count);
             Utilities.ConsoleShowSuccessMsg(string.Format("{0} contact(s) have been removed.", numberRemoved));
         }
     }

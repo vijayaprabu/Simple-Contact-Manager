@@ -8,9 +8,11 @@ namespace SimpleContactManager
     /// </summary>
     public class Program
     {
-        private Program() { } // Don't allow initialization of this class from outside as it would serve no purpose.
+        // Don't allow initialization of this class from the outside as it would serve no purpose.
+        private Program() { }
 
-        public static bool UsePersistance { get; private set; } = true; // Allow serialization of contacts to file?
+        // Allow serialization of contacts to disk?
+        public static bool UsePersistance { get; private set; } = true;
 
         /// <summary>
         /// Show basic program info such as the version and who the author is.
@@ -44,7 +46,8 @@ namespace SimpleContactManager
             // Cycle through the passed in command line arguments.
             foreach (string s in args)
             {
-                if (s.Equals("nosave", StringComparison.OrdinalIgnoreCase)) // If a passed in argument matches nosave (ignore case) then set usePersistance to false
+                // If a passed in argument matches nosave (ignore case) then set UsePersistance to false.
+                if (s.Equals("nosave", StringComparison.OrdinalIgnoreCase))
                 {
                     UsePersistance = false;
                 }

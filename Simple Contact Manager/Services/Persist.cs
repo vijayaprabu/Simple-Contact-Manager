@@ -6,14 +6,18 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SimpleContactManager.Services
 {
-    /*
-     * Responsible for the serialization of the user's contacts.
-     */
+    /// <summary>
+    /// Collection of methods responsible for the serialization of the user's contacts.
+    /// </summary>
     public class Persist
     {
+        // The file path for the file to be read and created at for serialization purposes.
+        private readonly string filePath = Environment.CurrentDirectory + "\\Saved Contacts.dat";
 
-        private readonly string filePath = Environment.CurrentDirectory + "\\Saved Contacts.dat"; // The file path for the file to be read and created at for serialization.
-
+        /// <summary>
+        /// Serializes a list of contacts to disk.
+        /// </summary>
+        /// <param name="contacts"></param>
         public void WriteContacts(List<Contact> contacts)
         {
             using (FileStream fileWriter = new FileStream(filePath, FileMode.Create, FileAccess.Write)) // Overwrite the current serialization file with a new updated file.
@@ -21,7 +25,8 @@ namespace SimpleContactManager.Services
                 try
                 {
                     BinaryFormatter writer = new BinaryFormatter();
-                    writer.Serialize(fileWriter, contacts); // Start the serialization of the user's contacts.
+                    // Start the serialization of the user's contacts.
+                    writer.Serialize(fileWriter, contacts);
                 }
 
                 catch (Exception ex)
@@ -34,21 +39,28 @@ namespace SimpleContactManager.Services
             }
         }
 
+        /// <summary>
+        /// Deserializes a list of contacts from a file.
+        /// </summary>
+        /// <returns></returns>
         public List<Contact> ReadContacts()
         {
-            if (!File.Exists(filePath)) // Create an empty file for serialization if one is not found upon program launch. (assuming persistence is enabled)
+            // Create an empty file for serialization if one is not found upon program launch. (assuming persistence is enabled)
+            if (!File.Exists(filePath))
             {
                 using (FileStream fileWriter = File.Create(filePath)) { }
             }
 
-            if (Utilities.IsFileEmpty(filePath)) // Only try to read the file if it's not empty.
+            // Only try to read the file if it's not empty.
+            if (Utilities.IsFileEmpty(filePath))
             {
                 using (FileStream fileReader = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
                     try
                     {
                         BinaryFormatter reader = new BinaryFormatter();
-                        List<Contact> contacts = (List<Contact>)reader.Deserialize(fileReader); // Read the user's saved contacts from a file into an arraylist.
+                        // Read the user's saved contacts from a file into a list.
+                        List<Contact> contacts = (List<Contact>)reader.Deserialize(fileReader);
                         return contacts;
                     }
 
@@ -58,7 +70,8 @@ namespace SimpleContactManager.Services
                         Console.Write("{0} \nPress any key to continue: ", ex.Message);
                         Console.ReadKey();
                         Console.Clear();
-                        return null; // Return nothing incase deserialization fails.
+                        // Return nothing incase deserialization fails.
+                        return null;
                     }
                 }
             }

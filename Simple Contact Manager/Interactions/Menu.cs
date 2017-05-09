@@ -5,12 +5,13 @@ using System.Collections.Generic;
 
 namespace SimpleContactManager.Interactions
 {
-    /*
-     * Provides a menu to the user and then processes there input and performs an action based off of it.
-     */
+    /// <summary>
+    /// Provides a menu to the user and then processes there input and performs an action based off of it.
+    /// </summary>
     public class Menu
     {
-        private bool doExit = false; // Keep displaying the menu and thus running the program?
+        // Keep displaying the menu and running the program?
+        private bool doExit = false;
         private Persist persist;
         private Manager manager;
         private Tasks tasks;
@@ -20,12 +21,15 @@ namespace SimpleContactManager.Interactions
             List<Contact> contacts;
             persist = new Persist();
 
-            if (Program.UsePersistance) // If persistence is enabled, get the user's contacts from a save file.
+            // If persistence is enabled, get the user's contacts from a save file.
+            if (Program.UsePersistance)
             {
                 contacts = persist.ReadContacts();
                 manager = new Manager(contacts);
             }
-            else // If persistence is not enabled, don't load the user's contacts from a save file. (start fresh)
+
+            // If persistence is not enabled, don't load the user's contacts from a save file. (start fresh)
+            else
             {
                 contacts = new List<Contact>();
                 manager = new Manager(contacts);
@@ -33,17 +37,23 @@ namespace SimpleContactManager.Interactions
             tasks = new Tasks(manager, persist);
         }
 
-        public void RunMenu() // Main program loop
+        /// <summary>
+        /// Main program loop
+        /// </summary>
+        public void RunMenu()
         {
             while (!doExit)
             {
                 DisplayOptions();
-                int choice = GetSelection(); 
+                int choice = GetSelection();
                 PerformAction(choice);
             }
         }
 
-        private void DisplayOptions() // Display a list of options the user can choose from.
+        /// <summary>
+        /// Displays a list of options for the user to choose from.
+        /// </summary>
+        private void DisplayOptions()
         {
             Console.WriteLine("1) Add a new contact");
             Console.WriteLine("2) List all contacts");
@@ -53,8 +63,11 @@ namespace SimpleContactManager.Interactions
             Console.WriteLine("0) Exit the program");
         }
 
-        // Get a choice from the user regarding the listed options above.
-        private int GetSelection() 
+        /// <summary>
+        /// Gets a choice from the user regarding the listed options above.
+        /// </summary>
+        /// <returns></returns>
+        private int GetSelection()
         {
             string input;
             int choice;
@@ -64,16 +77,19 @@ namespace SimpleContactManager.Interactions
                 Console.Write("\nEnter your choice using numbers only: ");
                 input = Console.ReadLine();
 
-                if (int.TryParse(input, out choice)) // If the user's input is of type integer.
+                // If the user's input is an integer.
+                if (int.TryParse(input, out choice))
                 {
-                    if (choice < 0 || choice > 5) // If the user's input is not between 0 and 5.
+                    // If the user's input is not between 0 and 5.
+                    if (choice < 0 || choice > 5)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nThe selection {0} is out of range, please try again.\n", choice);
                         Console.ResetColor();
                         continue;
                     }
-                    else // Return the user's choice if it's completely valid.
+                    // Returns the user's choice if it's completely valid.
+                    else
                     {
                         break;
                     }
@@ -87,9 +103,12 @@ namespace SimpleContactManager.Interactions
             }
             return choice;
         }
-        
-        // Call one of the methods in Task.cs based on what the user choose to do in the menu.
-        private void PerformAction(int choice)  
+
+        /// <summary>
+        /// Calls one of the methods in Task.cs based on what the user choose to do in the menu.
+        /// </summary>
+        /// <param name="choice"></param>
+        private void PerformAction(int choice)
         {
             switch (choice)
             {
