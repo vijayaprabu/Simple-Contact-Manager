@@ -1,10 +1,10 @@
-﻿using Simple_Contact_Manager_models;
+﻿using SimpleContactManager.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Simple_Contact_Manager_util
+namespace SimpleContactManager.Services
 {
     /*
      * Responsible for the serialization of the user's contacts.

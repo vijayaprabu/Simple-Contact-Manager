@@ -1,8 +1,8 @@
-﻿using Simple_Contact_Manager_util;
+﻿using SimpleContactManager.Services;
 using System;
 using System.Collections.Generic;
 
-namespace Simple_Contact_Manager_models
+namespace SimpleContactManager.Models
 {
     /*
      * Stores the user's contacts in an arraylist and provides various methods to interact with it.

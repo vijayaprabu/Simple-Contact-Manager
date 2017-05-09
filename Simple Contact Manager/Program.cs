@@ -1,15 +1,15 @@
-﻿using Simple_Contact_Manager_view;
+﻿using SimpleContactManager.Interactions;
 using System;
 
-namespace Simple_Contact_Manager
-{ 
+namespace SimpleContactManager
+{
     /* 
      * The launcher for the program which handles the passed in command line arguments 
      * and displays basic info to the user such as the author and the version.
      */
-    public class Launcher
+    public class Program
     {
-        private Launcher() { } // Don't allow initialization of this class from outside as it would serve no purpose.
+        private Program() { } // Don't allow initialization of this class from outside as it would serve no purpose.
 
         private static bool usePersistance = true; // Allow serialization of contacts to file?
 
@@ -49,7 +49,7 @@ namespace Simple_Contact_Manager
                     usePersistance = false;
                 }
             }
-            Launcher launcher = new Launcher(); 
+            Program launcher = new Program(); 
             launcher.Initialize();
         }      
     }

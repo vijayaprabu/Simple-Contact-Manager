@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Simple Contact Manager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A simple console based contact manager written in C#.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jared Lung")]
 [assembly: AssemblyProduct("Simple Contact Manager")]

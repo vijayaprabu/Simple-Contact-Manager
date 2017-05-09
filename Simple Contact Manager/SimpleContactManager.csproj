@@ -7,8 +7,8 @@
     <ProjectGuid>{2647AC4A-6457-47D5-B574-89C7E54B4DAB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simple_Contact_Manager</RootNamespace>
-    <AssemblyName>Simple Contact Manager</AssemblyName>
+    <RootNamespace>SimpleContactManager</RootNamespace>
+    <AssemblyName>SimpleContactManager</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -58,14 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="models\Contact.cs" />
-    <Compile Include="Launcher.cs" />
-    <Compile Include="models\Manager.cs" />
-    <Compile Include="view\Menu.cs" />
-    <Compile Include="util\Persist.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Models\Manager.cs" />
+    <Compile Include="Interactions\Menu.cs" />
+    <Compile Include="Services\Persist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="view\Tasks.cs" />
-    <Compile Include="util\Utilities.cs" />
+    <Compile Include="Interactions\Tasks.cs" />
+    <Compile Include="Services\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

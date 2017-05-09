@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simple_Contact_Manager_models
+namespace SimpleContactManager.Models
 {
     /*
      * The structure for a user's contact with basic info such as name and phone number. 

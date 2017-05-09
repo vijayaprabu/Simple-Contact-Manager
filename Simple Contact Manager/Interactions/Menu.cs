@@ -1,10 +1,9 @@
-﻿using Simple_Contact_Manager;
-using Simple_Contact_Manager_models;
-using Simple_Contact_Manager_util;
+﻿using SimpleContactManager.Models;
+using SimpleContactManager.Services;
 using System;
 using System.Collections.Generic;
 
-namespace Simple_Contact_Manager_view
+namespace SimpleContactManager.Interactions
 {
     /*
      * Provides a menu to the user and then processes there input and performs an action based off of it.
@@ -21,7 +20,7 @@ namespace Simple_Contact_Manager_view
             List<Contact> contacts;
             persist = new Persist();
 
-            if (Launcher.GetUsePersistance()) // If persistence is enabled, get the user's contacts from a save file.
+            if (Program.GetUsePersistance()) // If persistence is enabled, get the user's contacts from a save file.
             {
                 contacts = persist.ReadContacts();
                 manager = new Manager(contacts);

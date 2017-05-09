@@ -1,10 +1,9 @@
-﻿using Simple_Contact_Manager;
-using Simple_Contact_Manager_models;
-using Simple_Contact_Manager_util;
+﻿using SimpleContactManager.Models;
+using SimpleContactManager.Services;
 using System;
 using System.Linq;
 
-namespace Simple_Contact_Manager_view
+namespace SimpleContactManager.Interactions
 {
     /*
      * Contains a series of actions that occur based off what the user choose to do in the menu.
@@ -48,7 +47,7 @@ namespace Simple_Contact_Manager_view
 
             if (manager.AddContact(new Contact(firstName, lastName, phoneNumber, address)))
             {
-                if (Launcher.GetUsePersistance())
+                if (Program.GetUsePersistance())
                 {
                     persist.WriteContacts(manager.GetContacts());
                 }
@@ -111,7 +110,7 @@ namespace Simple_Contact_Manager_view
                         else
                         {
                             manager.RemoveContact(selection = selection - 1);
-                            if (Launcher.GetUsePersistance()) // If persistence is enabled save the user's current contacts to file.
+                            if (Program.GetUsePersistance()) // If persistence is enabled save the user's current contacts to file.
                             {
                                 persist.WriteContacts(manager.GetContacts());
                             }
