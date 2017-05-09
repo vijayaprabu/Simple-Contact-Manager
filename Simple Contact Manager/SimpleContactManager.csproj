@@ -58,9 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Model\Contact.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Models\Manager.cs" />
+    <Compile Include="Model\Manager.cs" />
     <Compile Include="Interactions\Menu.cs" />
     <Compile Include="Services\Persist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
