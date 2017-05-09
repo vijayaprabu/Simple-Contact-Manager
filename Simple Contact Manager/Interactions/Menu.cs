@@ -20,7 +20,7 @@ namespace SimpleContactManager.Interactions
             List<Contact> contacts;
             persist = new Persist();
 
-            if (Program.GetUsePersistance()) // If persistence is enabled, get the user's contacts from a save file.
+            if (Program.UsePersistance) // If persistence is enabled, get the user's contacts from a save file.
             {
                 contacts = persist.ReadContacts();
                 manager = new Manager(contacts);

@@ -47,7 +47,7 @@ namespace SimpleContactManager.Interactions
 
             if (manager.AddContact(new Contact(firstName, lastName, phoneNumber, address)))
             {
-                if (Program.GetUsePersistance())
+                if (Program.UsePersistance)
                 {
                     persist.WriteContacts(manager.GetContacts());
                 }
@@ -110,7 +110,7 @@ namespace SimpleContactManager.Interactions
                         else
                         {
                             manager.RemoveContact(selection = selection - 1);
-                            if (Program.GetUsePersistance()) // If persistence is enabled save the user's current contacts to file.
+                            if (Program.UsePersistance) // If persistence is enabled save the user's current contacts to file.
                             {
                                 persist.WriteContacts(manager.GetContacts());
                             }
