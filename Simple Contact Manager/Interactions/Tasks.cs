@@ -11,12 +11,10 @@ namespace SimpleContactManager.Interactions
     public class Tasks
     {
         private Manager manager;
-        private Persist persist;
 
-        public Tasks(Manager manager, Persist persist)
+        public Tasks(Manager manager)
         {
             this.manager = manager;
-            this.persist = persist;
         }
 
         /// <summary>
@@ -51,7 +49,7 @@ namespace SimpleContactManager.Interactions
             {
                 if (Program.UsePersistance)
                 {
-                    persist.WriteContacts(manager.GetContacts());
+                    Persist.WriteContacts(manager.GetContacts());
                 }
             }
         }
@@ -120,7 +118,7 @@ namespace SimpleContactManager.Interactions
                             // If persistence is enabled, save the user's current contacts to disk.
                             if (Program.UsePersistance)
                             {
-                                persist.WriteContacts(manager.GetContacts());
+                                Persist.WriteContacts(manager.GetContacts());
                             }
                             break;
                         }
@@ -149,7 +147,7 @@ namespace SimpleContactManager.Interactions
             if (manager.GetContacts().Count != 0)
             {
                 manager.RemoveAllContacts();
-                persist.DeleteSaveFile();
+                Persist.DeleteSaveData();
             }
             // If the user has no contacts display a message stating such.
             else

@@ -7,20 +7,22 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace SimpleContactManager.Services
 {
     /// <summary>
-    /// Collection of methods responsible for the serialization of the user's contacts.
+    /// Represents a collection of static methods responsible for the serialization of the user's contacts.
     /// </summary>
-    public class Persist
+    public static class Persist
     {
-        // The file path for the file to be read and created at for serialization purposes.
-        private readonly string filePath = Environment.CurrentDirectory + "\\Saved Contacts.dat";
+        // The paths on disk the application uses to save the user's contacts to.
+        private static readonly string appSaveFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Simple Contact Manager\Saved Contacts");
+        private static readonly string appSaveFile = "Contacts.dat";
 
         /// <summary>
         /// Serializes a list of contacts to disk.
         /// </summary>
         /// <param name="contacts"></param>
-        public void WriteContacts(List<Contact> contacts)
+        public static void WriteContacts(List<Contact> contacts)
         {
-            using (FileStream fileWriter = new FileStream(filePath, FileMode.Create, FileAccess.Write)) // Overwrite the current serialization file with a new updated file.
+            ValidatePath();
+            using (FileStream fileWriter = new FileStream(Path.Combine(appSaveFolder, appSaveFile), FileMode.Create, FileAccess.Write)) // Overwrite the current serialization file with a new updated file.
             {
                 try
                 {
@@ -43,18 +45,13 @@ namespace SimpleContactManager.Services
         /// Deserializes a list of contacts from a file.
         /// </summary>
         /// <returns></returns>
-        public List<Contact> ReadContacts()
+        public static List<Contact> ReadContacts()
         {
-            // Create an empty file for serialization if one is not found upon program launch. (assuming persistence is enabled)
-            if (!File.Exists(filePath))
-            {
-                using (FileStream fileWriter = File.Create(filePath)) { }
-            }
-
+            ValidatePath();
             // Only try to read the file if it's not empty.
-            if (Utilities.IsFileEmpty(filePath))
+            if (Utilities.IsFileEmpty(Path.Combine(appSaveFolder, appSaveFile)))
             {
-                using (FileStream fileReader = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                using (FileStream fileReader = new FileStream(Path.Combine(appSaveFolder, appSaveFile), FileMode.Open, FileAccess.Read))
                 {
                     try
                     {
@@ -83,11 +80,27 @@ namespace SimpleContactManager.Services
             }
         }
 
-        public void DeleteSaveFile()
+        /// <summary>
+        /// Deletes the file that stores the user's saved contacts from the disk.
+        /// </summary>
+        public static void DeleteSaveData()
         {
-            if (File.Exists(filePath))
+            if (Directory.Exists(appSaveFolder))
             {
-                File.Delete(filePath);
+                Directory.Delete(appSaveFolder, true);
+            }
+        }
+
+        /// <summary>
+        /// Validates whether or not the directories and the file the application uses for serialization purposes exist.
+        /// </summary>
+        private static void ValidatePath()
+        {
+            // Creates an empty file and directory for serialization if one is not found upon program launch. (assuming persistence is enabled)
+            if (!Directory.Exists(appSaveFolder))
+            {
+                Directory.CreateDirectory(appSaveFolder);
+                using (FileStream fileWriter = File.Create(Path.Combine(appSaveFolder, appSaveFile))) { }
             }
         }
     }

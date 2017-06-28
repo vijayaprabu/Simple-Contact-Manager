@@ -12,19 +12,17 @@ namespace SimpleContactManager.Interactions
     {
         // Keep displaying the menu and running the program?
         private bool doExit = false;
-        private Persist persist;
         private Manager manager;
         private Tasks tasks;
 
         public Menu()
         {
             List<Contact> contacts;
-            persist = new Persist();
 
             // If persistence is enabled, get the user's contacts from a save file.
             if (Program.UsePersistance)
             {
-                contacts = persist.ReadContacts();
+                contacts = Persist.ReadContacts();
                 manager = new Manager(contacts);
             }
 
@@ -34,7 +32,7 @@ namespace SimpleContactManager.Interactions
                 contacts = new List<Contact>();
                 manager = new Manager(contacts);
             }
-            tasks = new Tasks(manager, persist);
+            tasks = new Tasks(manager);
         }
 
         /// <summary>
