@@ -11,6 +11,7 @@ namespace SimpleContactManager.Services
     /// </summary>
     public static class Persist
     {
+
         // The paths on disk the application uses to save the user's contacts to.
         private static readonly string appSaveFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Simple Contact Manager\Saved Contacts");
         private static readonly string appSaveFile = "Contacts.dat";

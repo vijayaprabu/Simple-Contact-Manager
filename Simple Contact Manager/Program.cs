@@ -15,19 +15,16 @@ namespace SimpleContactManager
         public static bool UsePersistance { get; private set; } = true;
 
         /// <summary>
-        /// Show basic program info such as the version and who the author is.
+        /// Show a greeting, who the author is and set the console window title to the current logged in user in windows.
         /// </summary>
-        private void Initialize()
+        private static void Initialize()
         {
             Console.Title = "Simple Contact Manager Launcher";
-            Console.WriteLine("Hello {0}, and welcome to version 1.4 of a simple contact manager by Jared Lung.", Environment.UserName);
+            Console.WriteLine("Hello {0}, and welcome to a simple contact manager by Jared Lung.", Environment.UserName);
             Console.Write("Press Q to exit and any other key to continue: ");
             ConsoleKeyInfo key = Console.ReadKey();
 
-            if (key.Key == ConsoleKey.Q)
-            {
-                Environment.Exit(0);
-            }
+            if (key.Key == ConsoleKey.Q) { Environment.Exit(0); }
             else
             {
                 Console.Title = string.Format("{0}'s Contacts", Environment.UserName);
@@ -47,13 +44,9 @@ namespace SimpleContactManager
             foreach (string s in args)
             {
                 // If a passed in argument matches nosave (ignore case) then set UsePersistance to false.
-                if (s.Equals("nosave", StringComparison.OrdinalIgnoreCase))
-                {
-                    UsePersistance = false;
-                }
+                if (s.Equals("nosave", StringComparison.OrdinalIgnoreCase)) { UsePersistance = false; }
             }
-            Program launcher = new Program();
-            launcher.Initialize();
+            Initialize();
         }
     }
 }
