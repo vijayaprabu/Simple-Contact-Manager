@@ -47,10 +47,7 @@ namespace SimpleContactManager.Interactions
 
             if (manager.AddContact(new Contact(firstName, lastName, phoneNumber, address)))
             {
-                if (Program.UsePersistance)
-                {
-                    Persist.WriteContacts(manager.GetContacts());
-                }
+                if (Program.UsePersistance) { Persist.WriteContacts(manager.GetContacts()); }
             }
         }
 
@@ -73,10 +70,7 @@ namespace SimpleContactManager.Interactions
                 Console.Clear();
             }
             // If the user has no contacts display a message stating such.
-            else
-            {
-                Utilities.ConsoleShowErrorMsg("You have no contacts.");
-            }
+            else { Utilities.ConsoleShowErrorMsg("You have no contacts."); }
         }
 
         /// <summary>
@@ -116,10 +110,7 @@ namespace SimpleContactManager.Interactions
                         {
                             manager.RemoveContact(selection = selection - 1);
                             // If persistence is enabled, save the user's current contacts to disk.
-                            if (Program.UsePersistance)
-                            {
-                                Persist.WriteContacts(manager.GetContacts());
-                            }
+                            if (Program.UsePersistance) { Persist.WriteContacts(manager.GetContacts()); }
                             break;
                         }
                     }
@@ -132,10 +123,7 @@ namespace SimpleContactManager.Interactions
                 }
             }
             // If the user has no contacts display a message stating such.
-            else
-            {
-                Utilities.ConsoleShowErrorMsg("You have no contacts that you can remove.");
-            }
+            else { Utilities.ConsoleShowErrorMsg("You have no contacts that you can remove."); }
         }
 
         /// <summary>
@@ -150,10 +138,7 @@ namespace SimpleContactManager.Interactions
                 Persist.DeleteSaveData();
             }
             // If the user has no contacts display a message stating such.
-            else
-            {
-                Utilities.ConsoleShowErrorMsg("You have no contacts that you can remove.");
-            }
+            else { Utilities.ConsoleShowErrorMsg("You have no contacts that you can remove."); }
         }
 
         /// <summary>
@@ -207,10 +192,7 @@ namespace SimpleContactManager.Interactions
                     }
                 }
             }
-            else
-            {
-                Utilities.ConsoleShowErrorMsg("You have no contacts that you can view the details of.");
-            }
+            else { Utilities.ConsoleShowErrorMsg("You have no contacts that you can view the details of."); }
         }
     }
 }

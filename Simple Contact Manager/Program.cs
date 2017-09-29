@@ -23,7 +23,6 @@ namespace SimpleContactManager
             Console.WriteLine("Hello {0}, and welcome to a simple contact manager by Jared Lung.", Environment.UserName);
             Console.Write("Press Q to exit and any other key to continue: ");
             ConsoleKeyInfo key = Console.ReadKey();
-
             if (key.Key == ConsoleKey.Q) { Environment.Exit(0); }
             else
             {

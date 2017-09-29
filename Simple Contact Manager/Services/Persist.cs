@@ -86,10 +86,7 @@ namespace SimpleContactManager.Services
         /// </summary>
         public static void DeleteSaveData()
         {
-            if (Directory.Exists(appSaveFolder))
-            {
-                Directory.Delete(appSaveFolder, true);
-            }
+            if (Directory.Exists(appSaveFolder)) { Directory.Delete(appSaveFolder, true); }
         }
 
         /// <summary>
