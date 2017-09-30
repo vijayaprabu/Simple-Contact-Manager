@@ -87,10 +87,7 @@ namespace SimpleContactManager.Interactions
                         continue;
                     }
                     // Returns the user's choice if it's completely valid.
-                    else
-                    {
-                        break;
-                    }
+                    break;
                 }
                 else
                 {
