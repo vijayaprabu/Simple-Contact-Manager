@@ -22,7 +22,8 @@ namespace SimpleContactManager.Interactions
         /// </summary>
         public void AddContactProcess()
         {
-            string firstName, lastName;
+            string firstName;
+            string lastName;
             string phoneNumber;
             string address;
 

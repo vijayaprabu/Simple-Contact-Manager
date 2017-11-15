@@ -11,10 +11,10 @@ namespace SimpleContactManager.Services
     /// </summary>
     public static class Persist
     {
-
         // The paths on disk the application uses to save the user's contacts to.
-        private static readonly string appSaveFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Simple Contact Manager\Saved Contacts");
-        private static readonly string appSaveFile = "Contacts.dat";
+        private static readonly string AppSaveFile = "Contacts.dat";
+        private static readonly string AppSaveFolder = Path.Combine(Environment.GetFolderPath
+            (Environment.SpecialFolder.ApplicationData), @"Simple Contact Manager\Saved Contacts");
 
         /// <summary>
         /// Serializes a list of contacts to disk.
@@ -23,15 +23,13 @@ namespace SimpleContactManager.Services
         public static void WriteContacts(List<Contact> contacts)
         {
             ValidatePath();
-            using (FileStream fileWriter = new FileStream(Path.Combine(appSaveFolder, appSaveFile), FileMode.Create, FileAccess.Write)) // Overwrite the current serialization file with a new updated file.
+            using (FileStream fileWriter = new FileStream(Path.Combine(AppSaveFolder, AppSaveFile), FileMode.Create, FileAccess.Write))
             {
                 try
                 {
                     BinaryFormatter writer = new BinaryFormatter();
-                    // Start the serialization of the user's contacts.
                     writer.Serialize(fileWriter, contacts);
                 }
-
                 catch (Exception ex)
                 {
                     // TODO: Catch specific exceptions
@@ -49,31 +47,26 @@ namespace SimpleContactManager.Services
         public static List<Contact> ReadContacts()
         {
             ValidatePath();
-            // Only try to read the file if it's not empty.
-            if (Utilities.IsFileEmpty(Path.Combine(appSaveFolder, appSaveFile)))
+            if (Utilities.IsFileEmpty(Path.Combine(AppSaveFolder, AppSaveFile)))
             {
-                using (FileStream fileReader = new FileStream(Path.Combine(appSaveFolder, appSaveFile), FileMode.Open, FileAccess.Read))
+                using (FileStream fileReader = new FileStream(Path.Combine(AppSaveFolder, AppSaveFile), FileMode.Open, FileAccess.Read))
                 {
                     try
                     {
                         BinaryFormatter reader = new BinaryFormatter();
-                        // Read the user's saved contacts from a file into a list.
                         List<Contact> contacts = (List<Contact>)reader.Deserialize(fileReader);
                         return contacts;
                     }
-
                     catch (Exception ex)
                     {
                         // TODO: Catch specific exceptions
                         Console.Write("{0} \nPress any key to continue: ", ex.Message);
                         Console.ReadKey();
                         Console.Clear();
-                        // Return nothing incase deserialization fails.
                         return null;
                     }
                 }
             }
-
             else
             {
                 List<Contact> contacts = new List<Contact>();
@@ -86,7 +79,7 @@ namespace SimpleContactManager.Services
         /// </summary>
         public static void DeleteSaveData()
         {
-            if (Directory.Exists(appSaveFolder)) { Directory.Delete(appSaveFolder, true); }
+            if (Directory.Exists(AppSaveFolder)) { Directory.Delete(AppSaveFolder, true); }
         }
 
         /// <summary>
@@ -95,10 +88,10 @@ namespace SimpleContactManager.Services
         private static void ValidatePath()
         {
             // Creates an empty file and directory for serialization if one is not found upon program launch. (assuming persistence is enabled)
-            if (!Directory.Exists(appSaveFolder))
+            if (!Directory.Exists(AppSaveFolder))
             {
-                Directory.CreateDirectory(appSaveFolder);
-                using (FileStream fileWriter = File.Create(Path.Combine(appSaveFolder, appSaveFile))) { }
+                Directory.CreateDirectory(AppSaveFolder);
+                using (FileStream fileWriter = File.Create(Path.Combine(AppSaveFolder, AppSaveFile))) { }
             }
         }
     }

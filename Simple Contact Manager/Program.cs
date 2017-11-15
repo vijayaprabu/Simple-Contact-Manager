@@ -8,9 +8,6 @@ namespace SimpleContactManager
     /// </summary>
     public class Program
     {
-        // Don't allow initialization of this class from the outside as it would serve no purpose.
-        private Program() { }
-
         // Allow serialization of contacts to disk?
         public static bool UsePersistance { get; private set; } = true;
 
@@ -19,14 +16,14 @@ namespace SimpleContactManager
         /// </summary>
         private static void Initialize()
         {
-            Console.Title = "Simple Contact Manager Launcher";
+            Console.Title = "Simple Contact Manager";
             Console.WriteLine("Hello {0}, and welcome to a simple contact manager by Jared Lung.", Environment.UserName);
             Console.Write("Press Q to exit and any other key to continue: ");
             ConsoleKeyInfo key = Console.ReadKey();
             if (key.Key == ConsoleKey.Q) { Environment.Exit(0); }
             else
             {
-                Console.Title = string.Format("{0}'s Contacts", Environment.UserName);
+                Console.Title = $"{Environment.UserName}'s Contacts";
                 Console.Clear();
                 Menu menu = new Menu();
                 menu.RunMenu();

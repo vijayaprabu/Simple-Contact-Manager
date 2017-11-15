@@ -6,12 +6,11 @@ using System.Collections.Generic;
 namespace SimpleContactManager.Interactions
 {
     /// <summary>
-    /// Provides a menu to the user and then processes there input and performs an action based off of it.
+    /// Provides a menu to the user, processes there input and then performs an action based off of it.
     /// </summary>
     public class Menu
     {
-        // Keep displaying the menu and running the program?
-        private bool doExit = false;
+        private bool doExit;
         private Manager manager;
         private Tasks tasks;
 

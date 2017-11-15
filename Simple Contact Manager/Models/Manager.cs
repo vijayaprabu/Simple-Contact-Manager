@@ -9,8 +9,7 @@ namespace SimpleContactManager.Models
     /// </summary>
     public class Manager
     {
-        // The list the user's contacts are stored in.
-        private List<Contact> contacts;
+        private readonly List<Contact> contacts;
 
         public Manager(List<Contact> contacts)
         {
