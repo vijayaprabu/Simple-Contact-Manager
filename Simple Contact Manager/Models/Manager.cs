@@ -65,9 +65,9 @@ namespace SimpleContactManager.Models
         /// <param name="index"></param>
         public void RemoveContact(int index)
         {
-            Contact removedContact = contacts[index];
+            string removedContact = contacts[index].FullName;
             contacts.RemoveAt(index);
-            Utilities.ConsoleShowSuccessMsg(string.Format("{0} has been successfully removed from your contacts.", removedContact.FullName));
+            Utilities.ConsoleShowSuccessMsg(string.Format("{0} has been successfully removed from your contacts.", removedContact));
         }
 
         /// <summary>
