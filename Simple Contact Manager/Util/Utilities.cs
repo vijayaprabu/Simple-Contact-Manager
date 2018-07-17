@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 
-namespace SimpleContactManager.Services
+namespace SimpleContactManager.Util
 {
     /// <summary>
     /// A class representing a collection of useful methods used throughout the code.
