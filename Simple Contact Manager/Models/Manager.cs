@@ -6,6 +6,7 @@ namespace SimpleContactManager.Models
 {
     public class Manager
     {
+        //TODO move console messages into Tasks.cs with the rest of the application logic 
         private readonly List<Contact> contacts;
 
         public Manager(List<Contact> contacts)
