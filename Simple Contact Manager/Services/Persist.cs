@@ -7,20 +7,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SimpleContactManager.Services
 {
-    /// <summary>
-    /// Represents a collection of static methods responsible for the serialization of the user's contacts.
-    /// </summary>
     public static class Persist
     {
-        // The paths on disk the application uses to save the user's contacts to.
         private static readonly string AppSaveFile = "Contacts.dat";
         private static readonly string AppSaveFolder = Path.Combine(Environment.GetFolderPath
             (Environment.SpecialFolder.ApplicationData), @"Simple Contact Manager\Saved Contacts");
 
-        /// <summary>
-        /// Serializes a list of contacts to disk.
-        /// </summary>
-        /// <param name="contacts"></param>
         public static void WriteContacts(List<Contact> contacts)
         {
             ValidatePath();
@@ -41,10 +33,6 @@ namespace SimpleContactManager.Services
             }
         }
 
-        /// <summary>
-        /// Deserializes a list of contacts from a file.
-        /// </summary>
-        /// <returns></returns>
         public static List<Contact> ReadContacts()
         {
             ValidatePath();
@@ -75,20 +63,13 @@ namespace SimpleContactManager.Services
             }
         }
 
-        /// <summary>
-        /// Deletes the file that stores the user's saved contacts from the disk.
-        /// </summary>
         public static void DeleteSaveData()
         {
             if (Directory.Exists(AppSaveFolder)) { Directory.Delete(AppSaveFolder, true); }
         }
 
-        /// <summary>
-        /// Validates whether or not the directories and the file the application uses for serialization purposes exist.
-        /// </summary>
         private static void ValidatePath()
         {
-            // Creates an empty file and directory for serialization if one is not found upon program launch. (assuming persistence is enabled)
             if (!Directory.Exists(AppSaveFolder))
             {
                 Directory.CreateDirectory(AppSaveFolder);

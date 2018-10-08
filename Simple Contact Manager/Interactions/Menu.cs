@@ -5,9 +5,6 @@ using System.Collections.Generic;
 
 namespace SimpleContactManager.Interactions
 {
-    /// <summary>
-    /// Provides a menu to the user, processes there input and then performs an action based off of it.
-    /// </summary>
     public class Menu
     {
         private bool doExit;
@@ -18,14 +15,11 @@ namespace SimpleContactManager.Interactions
         {
             List<Contact> contacts;
 
-            // If persistence is enabled, get the user's contacts from a save file.
             if (Program.UsePersistance)
             {
                 contacts = Persist.ReadContacts();
                 manager = new Manager(contacts);
             }
-
-            // If persistence is not enabled, don't load the user's contacts from a save file. (start fresh)
             else
             {
                 contacts = new List<Contact>();
@@ -34,9 +28,6 @@ namespace SimpleContactManager.Interactions
             tasks = new Tasks(manager);
         }
 
-        /// <summary>
-        /// Main program loop
-        /// </summary>
         public void RunMenu()
         {
             while (!doExit)
@@ -47,9 +38,6 @@ namespace SimpleContactManager.Interactions
             }
         }
 
-        /// <summary>
-        /// Displays a list of options for the user to choose from.
-        /// </summary>
         private void DisplayOptions()
         {
             Console.WriteLine("1) Add a new contact");
@@ -60,10 +48,6 @@ namespace SimpleContactManager.Interactions
             Console.WriteLine("0) Exit the program");
         }
 
-        /// <summary>
-        /// Gets a choice from the user regarding the listed options above.
-        /// </summary>
-        /// <returns></returns>
         private int GetSelection()
         {
             string input;
@@ -74,10 +58,8 @@ namespace SimpleContactManager.Interactions
                 Console.Write("\nEnter your choice using numbers only: ");
                 input = Console.ReadLine();
 
-                // If the user's input is an integer.
                 if (int.TryParse(input, out choice))
                 {
-                    // If the user's input is not between 0 and 5.
                     if (choice < 0 || choice > 5)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -85,7 +67,6 @@ namespace SimpleContactManager.Interactions
                         Console.ResetColor();
                         continue;
                     }
-                    // Returns the user's choice if it's completely valid.
                     break;
                 }
                 else
@@ -98,10 +79,6 @@ namespace SimpleContactManager.Interactions
             return choice;
         }
 
-        /// <summary>
-        /// Calls one of the methods in Task.cs based on what the user choose to do in the menu.
-        /// </summary>
-        /// <param name="choice"></param>
         private void PerformAction(int choice)
         {
             switch (choice)

@@ -6,9 +6,6 @@ using System.Linq;
 
 namespace SimpleContactManager.Interactions
 {
-    /// <summary>
-    /// Contains a series of actions that occur based off what the user choose to do in the menu.
-    /// </summary>
     public class Tasks
     {
         private Manager manager;
@@ -18,9 +15,6 @@ namespace SimpleContactManager.Interactions
             this.manager = manager;
         }
 
-        /// <summary>
-        /// Walk the user through the process of creating a new contact.
-        /// </summary>
         public void AddContactProcess()
         {
             string firstName;
@@ -53,9 +47,6 @@ namespace SimpleContactManager.Interactions
             }
         }
 
-        /// <summary>
-        /// Lists all of the user's current contacts in the console.
-        /// </summary>
         public void ListAllContacts()
         {
             if (manager.GetContacts().Count() != 0)
@@ -71,13 +62,9 @@ namespace SimpleContactManager.Interactions
                 Console.ReadKey();
                 Console.Clear();
             }
-            // If the user has no contacts display a message stating such.
             else { Utilities.ConsoleShowErrorMsg("You have no contacts."); }
         }
 
-        /// <summary>
-        /// Walk the user through the process of removing a contact.
-        /// </summary>
         public void RemoveContactProcess()
         {
             string input;
@@ -111,7 +98,6 @@ namespace SimpleContactManager.Interactions
                         else
                         {
                             manager.RemoveContact(selection = selection - 1);
-                            // If persistence is enabled, save the user's current contacts to disk.
                             if (Program.UsePersistance) { Persist.WriteContacts(manager.GetContacts()); }
                             break;
                         }
@@ -124,33 +110,23 @@ namespace SimpleContactManager.Interactions
                     }
                 }
             }
-            // If the user has no contacts display a message stating such.
             else { Utilities.ConsoleShowErrorMsg("You have no contacts that you can remove."); }
         }
 
-        /// <summary>
-        /// Remove all of the user's contacts.
-        /// </summary>
         public void RemoveAllContactsProcess()
         {
-            // If the user has any contacts.
             if (manager.GetContacts().Count != 0)
             {
                 manager.RemoveAllContacts();
                 Persist.DeleteSaveData();
             }
-            // If the user has no contacts display a message stating such.
             else { Utilities.ConsoleShowErrorMsg("You have no contacts that you can remove."); }
         }
 
-        /// <summary>
-        /// Walk the user through the process of selecting a contact to have there info shown.
-        /// </summary>
         public void ShowContactDetails()
         {
             string input;
 
-            // If the user has any contacts.
             if (manager.GetContacts().Count != 0)
             {
                 Console.Clear();

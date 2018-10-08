@@ -2,9 +2,6 @@
 
 namespace SimpleContactManager.Models
 {
-    /// <summary>
-    /// The structure for a user's contact with basic info such as name and phone number. 
-    /// </summary>
     [Serializable]
     public class Contact
     {
@@ -22,10 +19,6 @@ namespace SimpleContactManager.Models
             Address = address;
         }
 
-        /// <summary>
-        /// Returns all the info about the contact.
-        /// </summary>
-        /// <returns></returns>
         public override string ToString()
         {
             return "Fullname: " + FullName + "\nPhone number: " + PhoneNumber + "\nAddress: " + Address;
