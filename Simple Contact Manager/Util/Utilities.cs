@@ -39,7 +39,6 @@ namespace SimpleContactManager.Util
 
         public static string GetAndValidatePhoneNumber(string prompt)
         {
-            //TODO: Make the validation smarter
             string phoneNumber;
 
             while (true)
@@ -47,10 +46,10 @@ namespace SimpleContactManager.Util
                 Console.Write(prompt);
                 phoneNumber = Console.ReadLine();
 
-                if (!phoneNumber.All(char.IsDigit))
+                if (!Regex.IsMatch(phoneNumber, @"^(1-)?\d{3}-\d{3}-\d{4}$"))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nPhone number can only contain numbers.");
+                    Console.WriteLine("\nThe phone number must be in ###-###-#### format and contain no spaces.");
                     Console.ResetColor();
                     continue;
                 }
